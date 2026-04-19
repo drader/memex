@@ -6,16 +6,33 @@ Drop raw sources in. Agents ingest, synthesize, and cross-link them into a growi
 
 ---
 
-## What problem does this solve?
+## The four problems this solves
 
-Most AI-assisted knowledge systems break down in one of four ways. Memex fixes all four:
+Anyone who has tried to build a personal knowledge system with AI agents hits the same four walls. Here is what they are and how memex addresses each one.
 
-| Problem | Solution |
-|---|---|
-| **Heartbeat** — agents need external triggers to run on schedule | TypeScript scheduler reads `HEARTBEAT.md` YAML → registers `node-cron` jobs → runs as a daemon |
-| **Memory isolation** — agent MEMORY.md and the shared wiki drift apart | Weekly consolidator bridges patterns appearing in 2+ agents or 3+ consecutive weeks into `wiki/concepts/` |
-| **Index scaling** — `wiki/index.md` becomes unnavigable past ~50 pages | `obsidian-hybrid-search` MCP: BM25 + trigram + vector search with RRF, configured per-project |
-| **Cold start** — blank wiki produces generic output | `/setup` intake interview → LLM generates starter wiki pages + Bootstrap Hypotheses + Wakeup routine |
+### 1. Agents don't run themselves
+
+Pure Markdown-based agent systems have no built-in scheduler. You have to manually trigger every cycle — which means the system only works when you remember to use it.
+
+**Memex fix:** A TypeScript daemon reads the `schedule:` field from each agent's `HEARTBEAT.md` (a standard cron expression), registers it with `node-cron`, and runs it in the background. Install once with `npm run install-daemon`; agents run forever without any manual intervention.
+
+### 2. Agent memory and the shared wiki drift apart
+
+Agents accumulate patterns in their own `MEMORY.md` files. The shared wiki accumulates synthesized knowledge. Over time these diverge — agents rediscover things the wiki already knows, and wiki pages go stale because no agent is promoting its fresh findings.
+
+**Memex fix:** A weekly consolidator scans all `agents/*/MEMORY.md` files and promotes patterns that appear in 2+ agents or recur across 3+ consecutive weeks into `wiki/concepts/`. No scoring system, no manual tagging — just a simple structural rule that runs automatically every Monday.
+
+### 3. The wiki index becomes unnavigable
+
+A flat `wiki/index.md` works fine up to about 50 pages. Beyond that, every query starts with reading a bloated index, then navigating to a page, then realizing the answer is in a different page. Context fills up fast and search quality drops.
+
+**Memex fix:** `obsidian-hybrid-search` runs as an MCP server over the `wiki/` folder. It combines BM25 (keyword), trigram (fuzzy), and vector (semantic) search with Reciprocal Rank Fusion. You install it once globally; each project configures it locally via `.claude/settings.json`. The wiki can grow to thousands of pages without changing the query workflow.
+
+### 4. A blank wiki produces generic output
+
+Starting from zero, an agent has no domain context. Its first outputs are shallow and generic, which means the wiki takes weeks to reach useful density — if it gets there at all.
+
+**Memex fix:** `npm run setup` runs a 7-question intake interview (domain, goals, known concepts, key sources, open questions, recurring tasks, success criteria). The LLM uses the answers to generate starter wiki pages, Bootstrap Hypotheses in `agents/researcher/MEMORY.md`, and a Wakeup routine in `agents/researcher/HEARTBEAT.md`. Day one output starts from your context, not from scratch.
 
 ---
 
@@ -41,7 +58,7 @@ MCP Server
   obsidian-hybrid-search — semantic search over wiki/ (installed globally, configured per project)
 ```
 
-### Two Memory Layers
+### Two memory layers
 
 | Layer | Location | Content | Written by |
 |---|---|---|---|
@@ -50,9 +67,9 @@ MCP Server
 
 The weekly consolidator bridges them — no manual promotion needed.
 
-### Three Context Tiers
+### Three context tiers
 
-| Tier | Token Budget | What loads |
+| Tier | Token budget | What loads |
 |---|---|---|
 | Tier 1 | 4k | `memory/`, `scratch/ideas.md`, last 3 days of `journal/` |
 | Tier 2 | 8k | `wiki/index.md`, active agent `AGENT.md` + `MEMORY.md` |
@@ -71,7 +88,7 @@ The weekly consolidator bridges them — no manual promotion needed.
 ### Install
 
 ```bash
-git clone https://github.com/your-username/memex my-vault
+git clone https://github.com/drader/memex my-vault
 cd my-vault
 npm install
 ```
@@ -90,8 +107,8 @@ This runs a 7-question intake interview. The LLM generates:
 ### Start the daemon
 
 ```bash
-npm start          # foreground
-npm run dev        # watch mode (auto-restart on file change)
+npm start                # foreground
+npm run dev              # watch mode (auto-restart on file change)
 npm run install-daemon   # background daemon (launchd on macOS, systemd on Linux)
 ```
 
@@ -157,17 +174,9 @@ The scheduler picks up new agents automatically on next restart.
 
 | Vault | Domain | What it ingests |
 |---|---|---|
-| [papervault](https://github.com/your-username/papervault) | Research papers | arXiv PDFs, abstracts |
-| [podvault](https://github.com/your-username/podvault) | Podcasts | Transcripts, episode notes |
-| [docvault](https://github.com/your-username/docvault) | Dev docs | Library docs, changelogs, RFCs |
-
----
-
-## Inspiration
-
-- [agenticTemplate](https://github.com/your-username/agenticTemplate) — multi-agent heartbeat and skill architecture
-- [knowledge-pipeline](https://github.com/your-username/knowledge-pipeline) — LLM-Wiki INGEST/QUERY/LINT pattern
-- [Skyfox-io/Memex](https://github.com/Skyfox-io/Memex) — Tier 1/2/3 context loading and session lifecycle
+| [papervault](https://github.com/drader/papervault) | Research papers | arXiv PDFs, abstracts |
+| [podvault](https://github.com/drader/podvault) | Podcasts | Transcripts, episode notes |
+| [docvault](https://github.com/drader/docvault) | Dev docs | Library docs, changelogs, RFCs |
 
 ---
 
