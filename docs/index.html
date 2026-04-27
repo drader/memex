@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="lang-tr" lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +31,6 @@
     overflow: hidden;
   }
 
-  /* scanline overlay */
   body::after {
     content: '';
     position: fixed;
@@ -41,100 +40,32 @@
     z-index: 1000;
   }
 
-  .deck {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-  }
+  .deck { width: 100vw; height: 100vh; position: relative; }
 
   .slide {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 64px 80px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.35s ease;
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 64px 80px; opacity: 0; pointer-events: none; transition: opacity 0.35s ease;
   }
-  .slide.active {
-    opacity: 1;
-    pointer-events: all;
-  }
+  .slide.active { opacity: 1; pointer-events: all; }
 
-  /* TYPOGRAPHY */
-  .label {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 24px;
-  }
+  .label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 24px; }
   .label span { color: var(--green); }
 
-  h1 {
-    font-size: clamp(42px, 6vw, 72px);
-    font-weight: 700;
-    color: var(--green);
-    line-height: 1.1;
-    text-align: center;
-  }
+  h1 { font-size: clamp(42px, 6vw, 72px); font-weight: 700; color: var(--green); line-height: 1.1; text-align: center; }
+  h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 600; color: var(--green); line-height: 1.2; margin-bottom: 32px; }
+  h3 { font-size: clamp(18px, 2.5vw, 28px); font-weight: 600; color: var(--text); margin-bottom: 16px; }
 
-  h2 {
-    font-size: clamp(28px, 4vw, 48px);
-    font-weight: 600;
-    color: var(--green);
-    line-height: 1.2;
-    margin-bottom: 32px;
-  }
+  p { font-size: clamp(14px, 1.8vw, 20px); line-height: 1.7; color: var(--text); max-width: 680px; text-align: center; }
+  .sub { font-size: clamp(13px, 1.5vw, 17px); color: var(--text-dim); margin-top: 16px; text-align: center; }
 
-  h3 {
-    font-size: clamp(18px, 2.5vw, 28px);
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-
-  p {
-    font-size: clamp(14px, 1.8vw, 20px);
-    line-height: 1.7;
-    color: var(--text);
-    max-width: 680px;
-    text-align: center;
-  }
-
-  .sub {
-    font-size: clamp(13px, 1.5vw, 17px);
-    color: var(--text-dim);
-    margin-top: 16px;
-    text-align: center;
-  }
-
-  /* TERMINAL BLOCK */
   .terminal {
-    background: var(--bg2);
-    border: 1px solid var(--green-muted);
-    border-radius: 6px;
-    padding: 24px 32px;
-    font-size: clamp(13px, 1.5vw, 16px);
-    line-height: 1.9;
-    color: var(--text);
-    width: 100%;
-    max-width: 640px;
-    box-shadow: 0 0 40px var(--green-glow);
-    position: relative;
+    background: var(--bg2); border: 1px solid var(--green-muted); border-radius: 6px;
+    padding: 24px 32px; font-size: clamp(13px, 1.5vw, 16px); line-height: 1.9;
+    color: var(--text); width: 100%; max-width: 640px;
+    box-shadow: 0 0 40px var(--green-glow); position: relative;
   }
-  .terminal::before {
-    content: '● ● ●';
-    position: absolute;
-    top: 10px;
-    left: 16px;
-    font-size: 10px;
-    color: var(--text-dim);
-    letter-spacing: 6px;
-  }
+  .terminal::before { content: '● ● ●'; position: absolute; top: 10px; left: 16px; font-size: 10px; color: var(--text-dim); letter-spacing: 6px; }
   .terminal .prompt { color: var(--green); }
   .terminal .cmd { color: var(--text); }
   .terminal .out { color: var(--text-dim); }
@@ -142,337 +73,133 @@
   .terminal .warn { color: var(--yellow); }
   .terminal .err { color: var(--red); }
 
-  /* PROBLEM CARD */
-  .problem-card {
-    background: var(--bg2);
-    border: 1px solid var(--green-muted);
-    border-left: 3px solid var(--red);
-    border-radius: 6px;
-    padding: 20px 28px;
-    max-width: 680px;
-    width: 100%;
-  }
+  .problem-card { background: var(--bg2); border: 1px solid var(--green-muted); border-left: 3px solid var(--red); border-radius: 6px; padding: 20px 28px; max-width: 680px; width: 100%; }
   .problem-card h3 { color: var(--red); margin-bottom: 8px; }
   .problem-card p { text-align: left; max-width: none; font-size: clamp(13px, 1.5vw, 17px); }
 
-  /* SOLUTION CARD */
-  .solution-card {
-    background: var(--bg2);
-    border: 1px solid var(--green-muted);
-    border-left: 3px solid var(--green);
-    border-radius: 6px;
-    padding: 20px 28px;
-    max-width: 680px;
-    width: 100%;
-  }
+  .solution-card { background: var(--bg2); border: 1px solid var(--green-muted); border-left: 3px solid var(--green); border-radius: 6px; padding: 20px 28px; max-width: 680px; width: 100%; }
   .solution-card h3 { color: var(--green); margin-bottom: 8px; }
   .solution-card p { text-align: left; max-width: none; font-size: clamp(13px, 1.5vw, 17px); }
 
-  /* GRID */
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    width: 100%;
-    max-width: 900px;
-  }
-  .grid-3 {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    width: 100%;
-    max-width: 960px;
-  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 900px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; width: 100%; max-width: 960px; }
 
-  /* ARCH BOX */
-  .arch-box {
-    background: var(--bg2);
-    border: 1px solid var(--green-muted);
-    border-radius: 6px;
-    padding: 20px 24px;
-    text-align: left;
-  }
-  .arch-box .arch-title {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 14px;
-    border-bottom: 1px solid var(--green-muted);
-    padding-bottom: 10px;
-  }
+  .arch-box { background: var(--bg2); border: 1px solid var(--green-muted); border-radius: 6px; padding: 20px 24px; text-align: left; }
+  .arch-box .arch-title { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); margin-bottom: 14px; border-bottom: 1px solid var(--green-muted); padding-bottom: 10px; }
   .arch-box ul { list-style: none; }
-  .arch-box li {
-    font-size: clamp(12px, 1.3vw, 15px);
-    color: var(--text-dim);
-    padding: 4px 0;
-  }
+  .arch-box li { font-size: clamp(12px, 1.3vw, 15px); color: var(--text-dim); padding: 4px 0; }
   .arch-box li::before { content: '— '; color: var(--green); }
   .arch-box li span { color: var(--text); }
 
-  /* TIER TABLE */
-  .tier-table {
-    width: 100%;
-    max-width: 700px;
-    border-collapse: collapse;
-  }
-  .tier-table th {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--green);
-    text-align: left;
-    padding: 8px 16px;
-    border-bottom: 1px solid var(--green-muted);
-  }
-  .tier-table td {
-    font-size: clamp(12px, 1.4vw, 15px);
-    color: var(--text);
-    padding: 10px 16px;
-    border-bottom: 1px solid rgba(0,77,20,0.3);
-    vertical-align: top;
-  }
+  .tier-table { width: 100%; max-width: 700px; border-collapse: collapse; }
+  .tier-table th { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); text-align: left; padding: 8px 16px; border-bottom: 1px solid var(--green-muted); }
+  .tier-table td { font-size: clamp(12px, 1.4vw, 15px); color: var(--text); padding: 10px 16px; border-bottom: 1px solid rgba(0,77,20,0.3); vertical-align: top; }
   .tier-table td:first-child { color: var(--green); font-weight: 600; white-space: nowrap; }
   .tier-table td:nth-child(2) { color: var(--text-dim); white-space: nowrap; }
 
-  /* VAULT CARD */
-  .vault-card {
-    background: var(--bg2);
-    border: 1px solid var(--green-muted);
-    border-radius: 6px;
-    padding: 24px;
-    text-align: left;
-    transition: border-color 0.2s;
-  }
+  .vault-card { background: var(--bg2); border: 1px solid var(--green-muted); border-radius: 6px; padding: 24px; text-align: left; transition: border-color 0.2s; }
   .vault-card:hover { border-color: var(--green); }
-  .vault-card .vault-name {
-    color: var(--green);
-    font-size: clamp(16px, 2vw, 22px);
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .vault-card .vault-domain {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 12px;
-  }
+  .vault-card .vault-name { color: var(--green); font-size: clamp(16px, 2vw, 22px); font-weight: 700; margin-bottom: 8px; }
+  .vault-card .vault-domain { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
   .vault-card p { font-size: clamp(12px, 1.3vw, 14px); text-align: left; max-width: none; line-height: 1.6; }
-  .vault-card .vault-ingest {
-    margin-top: 12px;
-    font-size: 12px;
-    color: var(--text-dim);
-    font-style: italic;
-  }
+  .vault-card .vault-ingest { margin-top: 12px; font-size: 12px; color: var(--text-dim); font-style: italic; }
 
-  /* DIVIDER */
-  .divider {
-    width: 48px;
-    height: 2px;
-    background: var(--green);
-    margin: 24px auto;
-    box-shadow: 0 0 8px var(--green);
-  }
+  .divider { width: 48px; height: 2px; background: var(--green); margin: 24px auto; box-shadow: 0 0 8px var(--green); }
 
-  /* HIGHLIGHT NUMBER */
-  .big-number {
-    font-size: clamp(64px, 10vw, 120px);
-    font-weight: 700;
-    color: var(--green);
-    line-height: 1;
-    text-shadow: 0 0 40px rgba(0,255,65,0.4);
-  }
+  .big-number { font-size: clamp(64px, 10vw, 120px); font-weight: 700; color: var(--green); line-height: 1; text-shadow: 0 0 40px rgba(0,255,65,0.4); }
 
-  /* BLINK CURSOR */
-  .cursor::after {
-    content: '_';
-    animation: blink 1s step-end infinite;
-    color: var(--green);
-  }
+  .cursor::after { content: '_'; animation: blink 1s step-end infinite; color: var(--green); }
   @keyframes blink { 50% { opacity: 0; } }
 
-  /* PROBLEM WALL (slide 3) */
-  .problem-wall {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    width: 100%;
-    max-width: 800px;
-  }
-  .wall-item {
-    background: var(--bg2);
-    border: 1px solid rgba(255,68,68,0.25);
-    border-radius: 6px;
-    padding: 18px 22px;
-  }
-  .wall-item .wall-num {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 8px;
-    opacity: 0.7;
-  }
+  .problem-wall { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; max-width: 800px; }
+  .wall-item { background: var(--bg2); border: 1px solid rgba(255,68,68,0.25); border-radius: 6px; padding: 18px 22px; }
+  .wall-item .wall-num { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; opacity: 0.7; }
   .wall-item h3 { color: var(--text); font-size: clamp(14px, 1.6vw, 18px); margin-bottom: 6px; }
   .wall-item p { font-size: clamp(12px, 1.3vw, 14px); color: var(--text-dim); text-align: left; max-width: none; line-height: 1.5; }
 
-  /* CONSOLIDATOR DIAGRAM */
-  .flow {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: clamp(12px, 1.4vw, 16px);
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .flow-box {
-    background: var(--bg2);
-    border: 1px solid var(--green-muted);
-    border-radius: 4px;
-    padding: 10px 20px;
-    text-align: center;
-    white-space: nowrap;
-  }
+  .flow { display: flex; align-items: center; gap: 16px; font-size: clamp(12px, 1.4vw, 16px); flex-wrap: wrap; justify-content: center; }
+  .flow-box { background: var(--bg2); border: 1px solid var(--green-muted); border-radius: 4px; padding: 10px 20px; text-align: center; white-space: nowrap; }
   .flow-box .flow-label { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
   .flow-box .flow-name { color: var(--green); font-weight: 600; margin-top: 2px; }
   .flow-arrow { color: var(--green-dim); font-size: 20px; }
-  .flow-condition {
-    font-size: 11px;
-    color: var(--text-dim);
-    text-align: center;
-    width: 100%;
-    margin-top: 8px;
-  }
+  .flow-condition { font-size: 11px; color: var(--text-dim); text-align: center; width: 100%; margin-top: 8px; }
 
-  /* PROGRESS */
-  .progress {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--green-muted);
-    z-index: 500;
-  }
-  .progress-bar {
-    height: 100%;
-    background: var(--green);
-    box-shadow: 0 0 8px var(--green);
-    transition: width 0.35s ease;
-  }
-
-  /* SLIDE NUMBER */
-  .slide-counter {
-    position: fixed;
-    bottom: 20px;
-    right: 28px;
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-    z-index: 500;
-  }
+  .progress { position: fixed; bottom: 0; left: 0; right: 0; height: 2px; background: var(--green-muted); z-index: 500; }
+  .progress-bar { height: 100%; background: var(--green); box-shadow: 0 0 8px var(--green); transition: width 0.35s ease; }
+  .slide-counter { position: fixed; bottom: 20px; right: 28px; font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; z-index: 500; }
   .slide-counter span { color: var(--green); }
+  .nav-hint { position: fixed; bottom: 20px; left: 28px; font-size: 11px; color: var(--text-dim); letter-spacing: 0.08em; z-index: 500; }
 
-  /* NAV HINT */
-  .nav-hint {
-    position: fixed;
-    bottom: 20px;
-    left: 28px;
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.08em;
-    z-index: 500;
-  }
-
-  /* GLOW LINE */
-  .glow-line {
-    width: 100%;
-    max-width: 680px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--green), transparent);
-    margin: 28px 0;
-    opacity: 0.5;
-  }
-
-  /* TITLE SLIDE extras */
-  .title-tag {
-    display: inline-block;
-    border: 1px solid var(--green-muted);
-    color: var(--text-dim);
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 20px;
-    margin-bottom: 32px;
-  }
-
-  /* BADGE */
-  .badge {
-    display: inline-block;
-    background: var(--green-muted);
-    color: var(--green);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 3px;
-    margin-right: 8px;
-  }
-
-  /* STACK ROW */
-  .stack-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 8px;
-  }
-  .stack-item {
-    background: var(--bg3);
-    border: 1px solid var(--green-muted);
-    border-radius: 4px;
-    padding: 8px 18px;
-    font-size: clamp(12px, 1.3vw, 15px);
-    color: var(--text-dim);
-  }
+  .glow-line { width: 100%; max-width: 680px; height: 1px; background: linear-gradient(90deg, transparent, var(--green), transparent); margin: 28px 0; opacity: 0.5; }
+  .title-tag { display: inline-block; border: 1px solid var(--green-muted); color: var(--text-dim); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 32px; }
+  .badge { display: inline-block; background: var(--green-muted); color: var(--green); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-right: 8px; }
+  .stack-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+  .stack-item { background: var(--bg3); border: 1px solid var(--green-muted); border-radius: 4px; padding: 8px 18px; font-size: clamp(12px, 1.3vw, 15px); color: var(--text-dim); }
   .stack-item span { color: var(--green); }
+
+  /* ── Language switcher ─── */
+  .lang-tr .en { display: none; }
+  .lang-en .tr { display: none; }
+
+  .lang-switch { position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 2000; display: flex; border: 1px solid var(--green-muted); border-radius: 3px; overflow: hidden; }
+  .lang-btn { background: none; border: none; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); padding: 4px 12px; letter-spacing: 0.1em; transition: color 0.15s; }
+  .lang-btn:hover { color: var(--green); }
+  .lang-btn.active { background: var(--green-muted); color: var(--green); }
 </style>
 </head>
 <body>
 
 <a href="https://drader.github.io/portfolio/" style="position:fixed;top:14px;left:16px;z-index:2000;font-family:'JetBrains Mono',monospace;font-size:12px;color:#5a7a5d;text-decoration:none;padding:5px 10px;border:1px solid #1a2e1c;border-radius:3px;background:rgba(8,12,9,0.85);backdrop-filter:blur(6px);transition:color 0.15s,border-color 0.15s;" onmouseover="this.style.color='#00ff41';this.style.borderColor='#00ff41';" onmouseout="this.style.color='#5a7a5d';this.style.borderColor='#1a2e1c';">← portfolio</a>
 
+<div class="lang-switch">
+  <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')">TR</button>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
 <div class="deck">
 
-  <!-- ─── SLIDE 1: TITLE ─────────────────────────────────── -->
+  <!-- SLIDE 1: TITLE -->
   <div class="slide active" id="s1">
-    <div class="title-tag">open source template</div>
+    <div class="title-tag">
+      <span class="tr">açık kaynak şablon</span>
+      <span class="en">open source template</span>
+    </div>
     <h1>memex</h1>
     <div class="divider"></div>
     <p style="font-size:clamp(16px,2.2vw,24px); color:var(--text-dim);">
-      hybrid agentic wiki
+      <span class="tr">hibrit ajansal wiki</span>
+      <span class="en">hybrid agentic wiki</span>
     </p>
     <p class="sub" style="margin-top:32px;">
-      TypeScript orchestrator + Markdown knowledge base<br>
-      Drop sources in. Agents build the wiki while you sleep.
+      <span class="tr">
+        TypeScript orkestratör + Markdown bilgi tabanı<br>
+        Kaynakları bırak. Ajanlar wiki'yi sen uyurken inşa eder.
+      </span>
+      <span class="en">
+        TypeScript orchestrator + Markdown knowledge base<br>
+        Drop sources in. Agents build the wiki while you sleep.
+      </span>
     </p>
     <div class="glow-line" style="margin-top:48px;"></div>
-    <p class="sub">
-      <span style="color:var(--green);">github.com/drader/memex</span>
-    </p>
+    <p class="sub"><span style="color:var(--green);">github.com/drader/memex</span></p>
   </div>
 
-  <!-- ─── SLIDE 2: THE DREAM ────────────────────────────── -->
+  <!-- SLIDE 2: THE DREAM -->
   <div class="slide" id="s2">
-    <div class="label">The promise</div>
-    <h2>A wiki that grows<br>while you sleep.</h2>
+    <div class="label">
+      <span class="tr">Vaat</span>
+      <span class="en">The promise</span>
+    </div>
+    <h2>
+      <span class="tr">Uyurken büyüyen<br>bir wiki.</span>
+      <span class="en">A wiki that grows<br>while you sleep.</span>
+    </h2>
     <div class="terminal" style="margin-top:24px;">
       <br>
       <div><span class="prompt">$ </span><span class="cmd">cp paper.pdf wiki/raw/papers/</span></div>
       <div class="out">&nbsp;</div>
-      <div class="out"># Tomorrow morning:</div>
+      <div class="out tr"># Yarın sabah:</div>
+      <div class="out en"># Tomorrow morning:</div>
       <div class="out">&nbsp;</div>
       <div><span class="prompt">$ </span><span class="cmd">ls wiki/papers/</span></div>
       <div><span class="hi">2025-01-19-attention-is-all-you-need.md</span></div>
@@ -480,186 +207,307 @@
       <div><span class="prompt">$ </span><span class="cmd">ls wiki/authors/</span></div>
       <div><span class="hi">vaswani-ashish.md  shazeer-noam.md  ...</span></div>
       <div class="out">&nbsp;</div>
-      <div class="out"># No manual work. No prompts. Just drop and go.</div>
+      <div class="out tr"># Manuel iş yok. Prompt yok. Bırak ve unut.</div>
+      <div class="out en"># No manual work. No prompts. Just drop and go.</div>
     </div>
   </div>
 
-  <!-- ─── SLIDE 3: THE 4 WALLS ─────────────────────────── -->
+  <!-- SLIDE 3: THE 4 WALLS -->
   <div class="slide" id="s3">
-    <div class="label">The reality</div>
-    <h2 style="margin-bottom:28px;">Every attempt hits<br>the same four walls.</h2>
+    <div class="label">
+      <span class="tr">Gerçek</span>
+      <span class="en">The reality</span>
+    </div>
+    <h2 style="margin-bottom:28px;">
+      <span class="tr">Her girişim aynı<br>dört duvara çarpar.</span>
+      <span class="en">Every attempt hits<br>the same four walls.</span>
+    </h2>
     <div class="problem-wall">
       <div class="wall-item">
-        <div class="wall-num">Problem 01</div>
-        <h3>Heartbeat</h3>
-        <p>Agents don't run themselves. Every cycle needs a manual trigger.</p>
+        <div class="wall-num">
+          <span class="tr">Sorun 01</span>
+          <span class="en">Problem 01</span>
+        </div>
+        <h3>
+          <span class="tr">Nabız</span>
+          <span class="en">Heartbeat</span>
+        </h3>
+        <p>
+          <span class="tr">Ajanlar kendiliğinden çalışmaz. Her döngü manuel tetikleme gerektirir.</span>
+          <span class="en">Agents don't run themselves. Every cycle needs a manual trigger.</span>
+        </p>
       </div>
       <div class="wall-item">
-        <div class="wall-num">Problem 02</div>
-        <h3>Memory drift</h3>
-        <p>Agent memory and the shared wiki gradually diverge. Knowledge gets lost.</p>
+        <div class="wall-num">
+          <span class="tr">Sorun 02</span>
+          <span class="en">Problem 02</span>
+        </div>
+        <h3>
+          <span class="tr">Hafıza kayması</span>
+          <span class="en">Memory drift</span>
+        </h3>
+        <p>
+          <span class="tr">Ajan belleği ve paylaşılan wiki giderek ayrışır. Bilgi kaybolur.</span>
+          <span class="en">Agent memory and the shared wiki gradually diverge. Knowledge gets lost.</span>
+        </p>
       </div>
       <div class="wall-item">
-        <div class="wall-num">Problem 03</div>
-        <h3>Index scaling</h3>
-        <p>wiki/index.md stops working past ~50 pages. Search quality collapses.</p>
+        <div class="wall-num">
+          <span class="tr">Sorun 03</span>
+          <span class="en">Problem 03</span>
+        </div>
+        <h3>
+          <span class="tr">İndeks ölçeklemesi</span>
+          <span class="en">Index scaling</span>
+        </h3>
+        <p>
+          <span class="tr">wiki/index.md ~50 sayfadan sonra çalışmayı durdurur. Arama kalitesi çöker.</span>
+          <span class="en">wiki/index.md stops working past ~50 pages. Search quality collapses.</span>
+        </p>
       </div>
       <div class="wall-item">
-        <div class="wall-num">Problem 04</div>
-        <h3>Cold start</h3>
-        <p>A blank wiki produces generic output. Weeks pass before it gets useful.</p>
+        <div class="wall-num">
+          <span class="tr">Sorun 04</span>
+          <span class="en">Problem 04</span>
+        </div>
+        <h3>
+          <span class="tr">Soğuk başlangıç</span>
+          <span class="en">Cold start</span>
+        </h3>
+        <p>
+          <span class="tr">Boş bir wiki genel çıktılar üretir. Kullanışlı hale gelmesi haftalar alır.</span>
+          <span class="en">A blank wiki produces generic output. Weeks pass before it gets useful.</span>
+        </p>
       </div>
     </div>
-    <p class="sub" style="margin-top:24px;">memex solves all four.</p>
+    <p class="sub" style="margin-top:24px;">
+      <span class="tr">memex dördünü de çözer.</span>
+      <span class="en">memex solves all four.</span>
+    </p>
   </div>
 
-  <!-- ─── SLIDE 4: PROBLEM 1 ───────────────────────────── -->
+  <!-- SLIDE 4: PROBLEM 1 -->
   <div class="slide" id="s4">
-    <div class="label"><span>Problem 01</span> — Heartbeat</div>
-    <h2>Your agents are waiting<br>for you to remember them.</h2>
+    <div class="label">
+      <span class="tr"><span>Sorun 01</span> — Nabız</span>
+      <span class="en"><span>Problem 01</span> — Heartbeat</span>
+    </div>
+    <h2>
+      <span class="tr">Ajanların seni<br>hatırlamanı bekliyor.</span>
+      <span class="en">Your agents are waiting<br>for you to remember them.</span>
+    </h2>
     <div class="problem-card" style="margin-top:24px;">
-      <h3>The situation</h3>
+      <h3>
+        <span class="tr">Durum</span>
+        <span class="en">The situation</span>
+      </h3>
       <p>
-        Markdown-based agent systems have no built-in scheduler.
-        You define a heartbeat in a file, but nothing reads it.
-        The system only runs when you manually open Claude and type a prompt.
-        Which means — it runs when you're already thinking about it,
-        and stops the moment you stop.
+        <span class="tr">Markdown tabanlı ajan sistemlerinin yerleşik bir zamanlayıcısı yok. Dosyada bir nabız tanımlarsın ama onu okuyan yok. Sistem yalnızca Claude'u açıp manuel olarak bir prompt yazdığında çalışır. Yani — zaten düşünürken çalışır, düşünmeyi bıraktığın anda durur.</span>
+        <span class="en">Markdown-based agent systems have no built-in scheduler. You define a heartbeat in a file, but nothing reads it. The system only runs when you manually open Claude and type a prompt. Which means — it runs when you're already thinking about it, and stops the moment you stop.</span>
       </p>
     </div>
     <div class="solution-card" style="margin-top:16px;">
-      <h3>The fix</h3>
+      <h3>
+        <span class="tr">Çözüm</span>
+        <span class="en">The fix</span>
+      </h3>
       <p>
-        A TypeScript daemon reads the <span style="color:var(--green)">schedule:</span> field
-        from each agent's <span style="color:var(--green)">HEARTBEAT.md</span>,
-        registers it with <span style="color:var(--green)">node-cron</span>,
-        and runs it in the background forever.
-        Install once with <span style="color:var(--green)">npm run install-daemon</span>.
+        <span class="tr">Bir TypeScript daemon, her ajanın <span style="color:var(--green)">HEARTBEAT.md</span> dosyasındaki <span style="color:var(--green)">schedule:</span> alanını okur, <span style="color:var(--green)">node-cron</span> ile kaydeder ve sonsuza dek arka planda çalıştırır. <span style="color:var(--green)">npm run install-daemon</span> ile bir kez kur.</span>
+        <span class="en">A TypeScript daemon reads the <span style="color:var(--green)">schedule:</span> field from each agent's <span style="color:var(--green)">HEARTBEAT.md</span>, registers it with <span style="color:var(--green)">node-cron</span>, and runs it in the background forever. Install once with <span style="color:var(--green)">npm run install-daemon</span>.</span>
       </p>
     </div>
   </div>
 
-  <!-- ─── SLIDE 5: HEARTBEAT DIAGRAM ──────────────────── -->
+  <!-- SLIDE 5: HEARTBEAT DIAGRAM -->
   <div class="slide" id="s5">
-    <div class="label"><span>Solution 01</span> — Scheduler</div>
+    <div class="label">
+      <span class="tr"><span>Çözüm 01</span> — Zamanlayıcı</span>
+      <span class="en"><span>Solution 01</span> — Scheduler</span>
+    </div>
     <h2 style="font-size:clamp(22px,3vw,38px); margin-bottom:28px;">HEARTBEAT.md → node-cron → daemon</h2>
     <div class="terminal">
       <br>
       <div class="out"># agents/researcher/HEARTBEAT.md</div>
       <div style="color:var(--yellow);">---</div>
-      <div><span class="hi">schedule:</span> <span class="cmd">"0 9 * * 2-5"</span>  <span class="out"># Tue–Fri 09:00</span></div>
+      <div>
+        <span class="hi">schedule:</span>
+        <span class="cmd"> "0 9 * * 2-5"</span>
+        <span class="out tr">  # Sal–Cum 09:00</span>
+        <span class="out en">  # Tue–Fri 09:00</span>
+      </div>
       <div><span class="hi">token_limit:</span> <span class="cmd">8000</span></div>
       <div style="color:var(--yellow);">---</div>
       <div class="out">&nbsp;</div>
-      <div class="out"># src/scheduler/index.ts reads every HEARTBEAT.md,</div>
-      <div class="out"># registers the cron, calls runner → Claude CLI.</div>
+      <div class="out tr"># src/scheduler/index.ts her HEARTBEAT.md'yi okur,</div>
+      <div class="out en"># src/scheduler/index.ts reads every HEARTBEAT.md,</div>
+      <div class="out tr"># cron'u kaydeder, runner → Claude CLI çağrır.</div>
+      <div class="out en"># registers the cron, calls runner → Claude CLI.</div>
       <div class="out">&nbsp;</div>
       <div><span class="prompt">$ </span><span class="cmd">npm run install-daemon</span></div>
       <div class="hi">✓ registered: researcher  (0 9 * * 2-5)</div>
       <div class="hi">✓ registered: orchestrator (0 9 * * 1)</div>
-      <div class="out">Daemon running. You can close this terminal.</div>
+      <div class="out tr">Daemon çalışıyor. Bu terminali kapatabilirsin.</div>
+      <div class="out en">Daemon running. You can close this terminal.</div>
     </div>
   </div>
 
-  <!-- ─── SLIDE 6: PROBLEM 2 ───────────────────────────── -->
+  <!-- SLIDE 6: PROBLEM 2 -->
   <div class="slide" id="s6">
-    <div class="label"><span>Problem 02</span> — Memory drift</div>
-    <h2>Agents rediscover<br>what the wiki already knows.</h2>
+    <div class="label">
+      <span class="tr"><span>Sorun 02</span> — Hafıza kayması</span>
+      <span class="en"><span>Problem 02</span> — Memory drift</span>
+    </div>
+    <h2>
+      <span class="tr">Ajanlar wiki'nin<br>zaten bildiğini yeniden keşfeder.</span>
+      <span class="en">Agents rediscover<br>what the wiki already knows.</span>
+    </h2>
     <div class="problem-card" style="margin-top:24px;">
-      <h3>The situation</h3>
+      <h3>
+        <span class="tr">Durum</span>
+        <span class="en">The situation</span>
+      </h3>
       <p>
-        Each agent has its own MEMORY.md. The shared wiki accumulates synthesized knowledge.
-        Over time, no bridge connects them. Agents keep noting the same patterns
-        in their private memory. The wiki grows stale because nothing promotes
-        fresh findings into it. Two knowledge stores, neither complete.
+        <span class="tr">Her ajanın kendi MEMORY.md'si var. Paylaşılan wiki sentezlenmiş bilgi biriktirir. Zamanla ikisini birbirine bağlayan köprü yok. Ajanlar aynı örüntüleri kendi özel belleğine kaydetmeye devam eder. Wiki güncelliğini kaybeder çünkü yeni bulguları oraya taşıyan bir mekanizma yok. İki bilgi deposu, ikisi de eksik.</span>
+        <span class="en">Each agent has its own MEMORY.md. The shared wiki accumulates synthesized knowledge. Over time, no bridge connects them. Agents keep noting the same patterns in their private memory. The wiki grows stale because nothing promotes fresh findings into it. Two knowledge stores, neither complete.</span>
       </p>
     </div>
     <div class="solution-card" style="margin-top:16px;">
-      <h3>The fix</h3>
+      <h3>
+        <span class="tr">Çözüm</span>
+        <span class="en">The fix</span>
+      </h3>
       <p>
-        A weekly consolidator scans all <span style="color:var(--green)">agents/*/MEMORY.md</span>
-        files and promotes patterns appearing in <span style="color:var(--green)">2+ agents</span>
-        or recurring across <span style="color:var(--green)">3+ consecutive weeks</span>
-        into <span style="color:var(--green)">wiki/concepts/</span>.
-        No scoring system. No manual tagging. One rule, runs automatically every Monday.
+        <span class="tr">Haftalık bir konsolidatör tüm <span style="color:var(--green)">agents/*/MEMORY.md</span> dosyalarını tarar ve <span style="color:var(--green)">2+ ajanda</span> veya <span style="color:var(--green)">3+ ardışık haftada</span> tekrarlayan örüntüleri <span style="color:var(--green)">wiki/concepts/</span>'a yükseltir. Puanlama sistemi yok. Manuel etiketleme yok. Tek bir kural, her Pazartesi otomatik çalışır.</span>
+        <span class="en">A weekly consolidator scans all <span style="color:var(--green)">agents/*/MEMORY.md</span> files and promotes patterns appearing in <span style="color:var(--green)">2+ agents</span> or recurring across <span style="color:var(--green)">3+ consecutive weeks</span> into <span style="color:var(--green)">wiki/concepts/</span>. No scoring system. No manual tagging. One rule, runs automatically every Monday.</span>
       </p>
     </div>
   </div>
 
-  <!-- ─── SLIDE 7: MEMORY DIAGRAM ─────────────────────── -->
+  <!-- SLIDE 7: MEMORY DIAGRAM -->
   <div class="slide" id="s7">
-    <div class="label"><span>Solution 02</span> — Consolidator</div>
-    <h2 style="font-size:clamp(20px,2.8vw,36px); margin-bottom:32px;">Two memory layers. One weekly bridge.</h2>
+    <div class="label">
+      <span class="tr"><span>Çözüm 02</span> — Konsolidatör</span>
+      <span class="en"><span>Solution 02</span> — Consolidator</span>
+    </div>
+    <h2 style="font-size:clamp(20px,2.8vw,36px); margin-bottom:32px;">
+      <span class="tr">İki hafıza katmanı. Haftalık tek köprü.</span>
+      <span class="en">Two memory layers. One weekly bridge.</span>
+    </h2>
     <div class="flow" style="margin-bottom:24px;">
       <div class="flow-box">
-        <div class="flow-label">process memory</div>
+        <div class="flow-label">
+          <span class="tr">süreç hafızası</span>
+          <span class="en">process memory</span>
+        </div>
         <div class="flow-name">agents/*/MEMORY.md</div>
       </div>
       <div class="flow-arrow">──▶</div>
       <div class="flow-box" style="border-color:var(--green); background:rgba(0,77,20,0.2);">
-        <div class="flow-label">every monday</div>
+        <div class="flow-label">
+          <span class="tr">her pazartesi</span>
+          <span class="en">every monday</span>
+        </div>
         <div class="flow-name">consolidator</div>
       </div>
       <div class="flow-arrow">──▶</div>
       <div class="flow-box">
-        <div class="flow-label">domain knowledge</div>
+        <div class="flow-label">
+          <span class="tr">domain bilgisi</span>
+          <span class="en">domain knowledge</span>
+        </div>
         <div class="flow-name">wiki/concepts/</div>
       </div>
-      <div class="flow-condition">promotes if: 2+ agents share the pattern  ·  OR  ·  3+ consecutive weeks</div>
+      <div class="flow-condition">
+        <span class="tr">yükseltir: 2+ ajan aynı örüntüyü paylaşıyor &nbsp;·&nbsp; VEYA &nbsp;·&nbsp; 3+ ardışık hafta</span>
+        <span class="en">promotes if: 2+ agents share the pattern &nbsp;·&nbsp; OR &nbsp;·&nbsp; 3+ consecutive weeks</span>
+      </div>
     </div>
     <table class="tier-table">
       <tr>
-        <th>Layer</th>
-        <th>Location</th>
-        <th>Content</th>
+        <th>
+          <span class="tr">Katman</span>
+          <span class="en">Layer</span>
+        </th>
+        <th>
+          <span class="tr">Konum</span>
+          <span class="en">Location</span>
+        </th>
+        <th>
+          <span class="tr">İçerik</span>
+          <span class="en">Content</span>
+        </th>
       </tr>
       <tr>
-        <td>Process memory</td>
+        <td>
+          <span class="tr">Süreç hafızası</span>
+          <span class="en">Process memory</span>
+        </td>
         <td>agents/*/MEMORY.md</td>
-        <td>Patterns, anti-patterns, hypotheses</td>
+        <td>
+          <span class="tr">Örüntüler, anti-paternler, hipotezler</span>
+          <span class="en">Patterns, anti-patterns, hypotheses</span>
+        </td>
       </tr>
       <tr>
-        <td>Domain knowledge</td>
+        <td>
+          <span class="tr">Domain bilgisi</span>
+          <span class="en">Domain knowledge</span>
+        </td>
         <td>wiki/</td>
-        <td>Concepts, decisions, syntheses</td>
+        <td>
+          <span class="tr">Kavramlar, kararlar, sentezler</span>
+          <span class="en">Concepts, decisions, syntheses</span>
+        </td>
       </tr>
     </table>
   </div>
 
-  <!-- ─── SLIDE 8: PROBLEM 3 ───────────────────────────── -->
+  <!-- SLIDE 8: PROBLEM 3 -->
   <div class="slide" id="s8">
-    <div class="label"><span>Problem 03</span> — Index scaling</div>
-    <h2>wiki/index.md hits a wall<br>at around 50 pages.</h2>
+    <div class="label">
+      <span class="tr"><span>Sorun 03</span> — İndeks ölçeklemesi</span>
+      <span class="en"><span>Problem 03</span> — Index scaling</span>
+    </div>
+    <h2>
+      <span class="tr">wiki/index.md yaklaşık<br>50 sayfada bir duvara çarpar.</span>
+      <span class="en">wiki/index.md hits a wall<br>at around 50 pages.</span>
+    </h2>
     <div class="problem-card" style="margin-top:24px;">
-      <h3>The situation</h3>
+      <h3>
+        <span class="tr">Durum</span>
+        <span class="en">The situation</span>
+      </h3>
       <p>
-        Every query starts by reading the full index, navigating to a page,
-        then realizing the answer is somewhere else. With 100+ pages,
-        the index alone fills your context window before any real work happens.
-        The more your wiki grows, the slower and less accurate it gets.
+        <span class="tr">Her sorgu tam indeksi okuyarak, bir sayfaya giderek ve ardından cevabın başka yerde olduğunu anlayarak başlar. 100+ sayfayla indeks tek başına gerçek iş olmadan önce bağlam pencerenizi doldurur. Wiki büyüdükçe daha yavaş ve daha az doğru hale gelir.</span>
+        <span class="en">Every query starts by reading the full index, navigating to a page, then realizing the answer is somewhere else. With 100+ pages, the index alone fills your context window before any real work happens. The more your wiki grows, the slower and less accurate it gets.</span>
       </p>
     </div>
     <div class="solution-card" style="margin-top:16px;">
-      <h3>The fix</h3>
+      <h3>
+        <span class="tr">Çözüm</span>
+        <span class="en">The fix</span>
+      </h3>
       <p>
-        <span style="color:var(--green)">obsidian-hybrid-search</span> runs as an MCP server
-        over the <span style="color:var(--green)">wiki/</span> folder.
-        BM25 (keyword) + trigram (fuzzy) + vector (semantic) search
-        with Reciprocal Rank Fusion.
-        Install globally once. Configure per-project via
-        <span style="color:var(--green)">.claude/settings.json</span>.
-        The wiki can grow to thousands of pages without changing anything.
+        <span class="tr"><span style="color:var(--green)">obsidian-hybrid-search</span>, <span style="color:var(--green)">wiki/</span> klasörü üzerinde bir MCP sunucusu olarak çalışır. BM25 (anahtar kelime) + trigram (bulanık) + vektör (anlamsal) arama, Reciprocal Rank Fusion ile. Bir kez global olarak kur. Her proje için <span style="color:var(--green)">.claude/settings.json</span> ile yapılandır. Wiki binlerce sayfaya büyüyebilir, hiçbir şeyi değiştirmene gerek yok.</span>
+        <span class="en"><span style="color:var(--green)">obsidian-hybrid-search</span> runs as an MCP server over the <span style="color:var(--green)">wiki/</span> folder. BM25 (keyword) + trigram (fuzzy) + vector (semantic) search with Reciprocal Rank Fusion. Install globally once. Configure per-project via <span style="color:var(--green)">.claude/settings.json</span>. The wiki can grow to thousands of pages without changing anything.</span>
       </p>
     </div>
   </div>
 
-  <!-- ─── SLIDE 9: SEARCH DIAGRAM ─────────────────────── -->
+  <!-- SLIDE 9: SEARCH DIAGRAM -->
   <div class="slide" id="s9">
-    <div class="label"><span>Solution 03</span> — obsidian-hybrid-search</div>
-    <h2 style="font-size:clamp(20px,2.8vw,36px); margin-bottom:28px;">Semantic search over your wiki. Zero config per query.</h2>
+    <div class="label">
+      <span class="tr"><span>Çözüm 03</span> — obsidian-hybrid-search</span>
+      <span class="en"><span>Solution 03</span> — obsidian-hybrid-search</span>
+    </div>
+    <h2 style="font-size:clamp(20px,2.8vw,36px); margin-bottom:28px;">
+      <span class="tr">Wiki üzerinde anlamsal arama. Sorgu başına sıfır yapılandırma.</span>
+      <span class="en">Semantic search over your wiki. Zero config per query.</span>
+    </h2>
     <div class="terminal">
       <br>
-      <div class="out"># .claude/settings.json  (per project)</div>
+      <div class="out tr"># .claude/settings.json  (proje başına)</div>
+      <div class="out en"># .claude/settings.json  (per project)</div>
       <div><span class="hi">{</span></div>
       <div>&nbsp;&nbsp;<span class="hi">"mcpServers"</span><span class="cmd">: {</span></div>
       <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hi">"wiki-search"</span><span class="cmd">: {</span></div>
@@ -669,66 +517,91 @@
       <div>&nbsp;&nbsp;<span class="cmd">}</span></div>
       <div><span class="hi">}</span></div>
       <div class="out">&nbsp;</div>
-      <div class="out"># query in any Claude session:</div>
+      <div class="out tr"># Herhangi bir Claude oturumunda sorgu:</div>
+      <div class="out en"># query in any Claude session:</div>
       <div><span class="prompt">/query </span><span class="cmd">what did vaswani et al say about positional encoding?</span></div>
       <div class="out">→ BM25 + trigram + vector → RRF → ranked snippets</div>
       <div class="hi">→ wiki loaded: 3 pages (not 847)</div>
     </div>
   </div>
 
-  <!-- ─── SLIDE 10: PROBLEM 4 ──────────────────────────── -->
+  <!-- SLIDE 10: PROBLEM 4 -->
   <div class="slide" id="s10">
-    <div class="label"><span>Problem 04</span> — Cold start</div>
-    <h2>Day one output is<br>always shallow and generic.</h2>
+    <div class="label">
+      <span class="tr"><span>Sorun 04</span> — Soğuk başlangıç</span>
+      <span class="en"><span>Problem 04</span> — Cold start</span>
+    </div>
+    <h2>
+      <span class="tr">İlk gün çıktısı her zaman<br>yüzeysel ve genel.</span>
+      <span class="en">Day one output is<br>always shallow and generic.</span>
+    </h2>
     <div class="problem-card" style="margin-top:24px;">
-      <h3>The situation</h3>
+      <h3>
+        <span class="tr">Durum</span>
+        <span class="en">The situation</span>
+      </h3>
       <p>
-        You set up the template. The wiki is empty. The agent runs
-        and produces a page about "key concepts in your domain"
-        that reads like a Wikipedia stub. No context means no specificity.
-        It takes weeks of manual ingestion before the system becomes
-        genuinely useful — if you don't give up first.
+        <span class="tr">Şablonu kurdun. Wiki boş. Ajan çalışır ve "alanındaki temel kavramlar" hakkında bir Wikipedia stub'ı gibi okunan bir sayfa üretir. Bağlam yok demek özgünlük yok demek. Sistem gerçekten kullanışlı hale gelmeden önce haftalarca manuel ingest gerekir — eğer daha önce vazgeçmezsen.</span>
+        <span class="en">You set up the template. The wiki is empty. The agent runs and produces a page about "key concepts in your domain" that reads like a Wikipedia stub. No context means no specificity. It takes weeks of manual ingestion before the system becomes genuinely useful — if you don't give up first.</span>
       </p>
     </div>
     <div class="solution-card" style="margin-top:16px;">
-      <h3>The fix</h3>
+      <h3>
+        <span class="tr">Çözüm</span>
+        <span class="en">The fix</span>
+      </h3>
       <p>
-        <span style="color:var(--green)">npm run setup</span> runs a 7-question intake interview.
-        The LLM uses your answers to generate starter wiki pages,
-        <span style="color:var(--green)">Bootstrap Hypotheses</span> in MEMORY.md,
-        and a <span style="color:var(--green)">Wakeup routine</span> in HEARTBEAT.md.
-        Day one output starts from your context — not from scratch.
+        <span class="tr"><span style="color:var(--green)">npm run setup</span> 7 soruluk bir alım görüşmesi çalıştırır. LLM cevaplarını kullanarak başlangıç wiki sayfaları, <span style="color:var(--green)">MEMORY.md</span>'de Bootstrap Hipotezleri ve <span style="color:var(--green)">HEARTBEAT.md</span>'de bir Uyandırma rutini oluşturur. İlk gün çıktısı senin bağlamınla başlar — sıfırdan değil.</span>
+        <span class="en"><span style="color:var(--green)">npm run setup</span> runs a 7-question intake interview. The LLM uses your answers to generate starter wiki pages, <span style="color:var(--green)">Bootstrap Hypotheses</span> in MEMORY.md, and a <span style="color:var(--green)">Wakeup routine</span> in HEARTBEAT.md. Day one output starts from your context — not from scratch.</span>
       </p>
     </div>
   </div>
 
-  <!-- ─── SLIDE 11: SETUP INTERVIEW ───────────────────── -->
+  <!-- SLIDE 11: SETUP INTERVIEW -->
   <div class="slide" id="s11">
-    <div class="label"><span>Solution 04</span> — /setup interview</div>
-    <h2 style="font-size:clamp(20px,2.8vw,36px); margin-bottom:28px;">7 questions. Domain-aware from minute one.</h2>
+    <div class="label">
+      <span class="tr"><span>Çözüm 04</span> — /setup görüşmesi</span>
+      <span class="en"><span>Solution 04</span> — /setup interview</span>
+    </div>
+    <h2 style="font-size:clamp(20px,2.8vw,36px); margin-bottom:28px;">
+      <span class="tr">7 soru. İlk dakikadan domain farkındalığı.</span>
+      <span class="en">7 questions. Domain-aware from minute one.</span>
+    </h2>
     <div class="terminal" style="max-width:700px;">
       <br>
       <div><span class="prompt">$ </span><span class="cmd">npm run setup</span></div>
       <div class="out">&nbsp;</div>
-      <div class="out">Q1 › What is this vault for?</div>
+      <div class="out tr">Q1 › Bu vault ne için?</div>
+      <div class="out en">Q1 › What is this vault for?</div>
       <div class="hi">&nbsp;&nbsp;&nbsp;Tracking state-of-the-art in retrieval-augmented generation</div>
-      <div class="out">Q3 › List 5 key concepts to track from day one.</div>
+      <div class="out tr">Q3 › İlk günden takip edilecek 5 temel kavramı say.</div>
+      <div class="out en">Q3 › List 5 key concepts to track from day one.</div>
       <div class="hi">&nbsp;&nbsp;&nbsp;RAG, dense retrieval, re-ranking, hybrid search, long context</div>
-      <div class="out">Q5 › 3 open questions you currently can't answer?</div>
+      <div class="out tr">Q5 › Şu an yanıtlayamadığın 3 açık soru?</div>
+      <div class="out en">Q5 › 3 open questions you currently can't answer?</div>
       <div class="hi">&nbsp;&nbsp;&nbsp;Does re-ranking always beat dense-only? ...</div>
       <div class="out">&nbsp;</div>
-      <div class="out">Generating starter wiki pages ...</div>
+      <div class="out tr">Başlangıç wiki sayfaları oluşturuluyor ...</div>
+      <div class="out en">Generating starter wiki pages ...</div>
       <div class="hi">✓ wiki/concepts/retrieval-augmented-generation.md</div>
       <div class="hi">✓ wiki/concepts/dense-retrieval.md</div>
-      <div class="hi">✓ agents/researcher/MEMORY.md  (Bootstrap Hypotheses)</div>
-      <div class="hi">✓ agents/researcher/HEARTBEAT.md  (Wakeup routine)</div>
+      <div class="hi tr">✓ agents/researcher/MEMORY.md  (Bootstrap Hipotezleri)</div>
+      <div class="hi en">✓ agents/researcher/MEMORY.md  (Bootstrap Hypotheses)</div>
+      <div class="hi tr">✓ agents/researcher/HEARTBEAT.md  (Uyandırma rutini)</div>
+      <div class="hi en">✓ agents/researcher/HEARTBEAT.md  (Wakeup routine)</div>
     </div>
   </div>
 
-  <!-- ─── SLIDE 12: ARCHITECTURE ───────────────────────── -->
+  <!-- SLIDE 12: ARCHITECTURE -->
   <div class="slide" id="s12">
-    <div class="label">Architecture</div>
-    <h2 style="font-size:clamp(20px,2.8vw,36px); margin-bottom:28px;">TypeScript motor · Markdown content · MCP search</h2>
+    <div class="label">
+      <span class="tr">Mimari</span>
+      <span class="en">Architecture</span>
+    </div>
+    <h2 style="font-size:clamp(20px,2.8vw,36px); margin-bottom:28px;">
+      <span class="tr">TypeScript motor · Markdown içerik · MCP arama</span>
+      <span class="en">TypeScript motor · Markdown content · MCP search</span>
+    </h2>
     <div class="grid-3">
       <div class="arch-box">
         <div class="arch-title">TypeScript Motor</div>
@@ -742,7 +615,10 @@
         </ul>
       </div>
       <div class="arch-box">
-        <div class="arch-title">Markdown Content</div>
+        <div class="arch-title">
+          <span class="tr">Markdown İçerik</span>
+          <span class="en">Markdown Content</span>
+        </div>
         <ul>
           <li><span>wiki/</span></li>
           <li><span>agents/</span></li>
@@ -753,67 +629,105 @@
         </ul>
       </div>
       <div class="arch-box">
-        <div class="arch-title">Context Tiers</div>
+        <div class="arch-title">
+          <span class="tr">Bağlam Katmanları</span>
+          <span class="en">Context Tiers</span>
+        </div>
         <ul>
           <li><span>T1 · 4k — memory/</span></li>
           <li><span>T2 · 8k — wiki/index</span></li>
-          <li><span>T3 · on demand</span></li>
+          <li><span>T3 · <span class="tr">istek üzerine</span><span class="en">on demand</span></span></li>
           <li>&nbsp;</li>
           <li><span>MCP · hybrid search</span></li>
-          <li><span>locker · no races</span></li>
+          <li><span>locker · <span class="tr">yarış yok</span><span class="en">no races</span></span></li>
         </ul>
       </div>
     </div>
     <p class="sub" style="margin-top:24px;">
-      TypeScript handles the machine work. Markdown stays human-readable. <br>
-      You can read and edit any part of the system without touching code.
+      <span class="tr">TypeScript makine işini halleder. Markdown insan tarafından okunabilir kalır.<br>Koda dokunmadan sistemin herhangi bir parçasını okuyabilir ve düzenleyebilirsin.</span>
+      <span class="en">TypeScript handles the machine work. Markdown stays human-readable.<br>You can read and edit any part of the system without touching code.</span>
     </p>
   </div>
 
-  <!-- ─── SLIDE 13: EXAMPLES ───────────────────────────── -->
+  <!-- SLIDE 13: EXAMPLES -->
   <div class="slide" id="s13">
-    <div class="label">Built on memex</div>
-    <h2 style="margin-bottom:28px;">Same engine. Different domains.</h2>
+    <div class="label">
+      <span class="tr">memex üzerine inşa edildi</span>
+      <span class="en">Built on memex</span>
+    </div>
+    <h2 style="margin-bottom:28px;">
+      <span class="tr">Aynı motor. Farklı domainler.</span>
+      <span class="en">Same engine. Different domains.</span>
+    </h2>
     <div class="grid-3">
       <div class="vault-card">
         <div class="vault-name">papervault</div>
-        <div class="vault-domain">Research papers</div>
-        <p>Ingests arXiv PDFs. Extracts contributions, methods, limitations. Links authors and venues.</p>
+        <div class="vault-domain">
+          <span class="tr">Araştırma makaleleri</span>
+          <span class="en">Research papers</span>
+        </div>
+        <p>
+          <span class="tr">arXiv PDF'lerini ingest eder. Katkıları, yöntemleri, kısıtlamaları çıkarır. Yazarları ve etkinlikleri bağlar.</span>
+          <span class="en">Ingests arXiv PDFs. Extracts contributions, methods, limitations. Links authors and venues.</span>
+        </p>
         <div class="vault-ingest">wiki/papers/ · authors/ · methods/ · venues/</div>
       </div>
       <div class="vault-card">
         <div class="vault-name">podvault</div>
-        <div class="vault-domain">Podcasts</div>
-        <p>Ingests episode transcripts. Extracts insights, quotes, resources. Links guests, shows, topics.</p>
+        <div class="vault-domain">
+          <span class="tr">Podcastler</span>
+          <span class="en">Podcasts</span>
+        </div>
+        <p>
+          <span class="tr">Bölüm transkriptlerini ingest eder. Öngörüleri, alıntıları, kaynakları çıkarır. Konukları, şovları, konuları bağlar.</span>
+          <span class="en">Ingests episode transcripts. Extracts insights, quotes, resources. Links guests, shows, topics.</span>
+        </p>
         <div class="vault-ingest">wiki/episodes/ · shows/ · guests/ · topics/</div>
       </div>
       <div class="vault-card">
         <div class="vault-name">docvault</div>
-        <div class="vault-domain">Developer docs</div>
-        <p>Ingests changelogs, API refs, RFCs. Flags breaking changes. Links libraries and patterns.</p>
+        <div class="vault-domain">
+          <span class="tr">Geliştirici dokümanları</span>
+          <span class="en">Developer docs</span>
+        </div>
+        <p>
+          <span class="tr">Changelog'ları, API referanslarını, RFC'leri ingest eder. Breaking change'leri işaretler. Kütüphaneleri ve örüntüleri bağlar.</span>
+          <span class="en">Ingests changelogs, API refs, RFCs. Flags breaking changes. Links libraries and patterns.</span>
+        </p>
         <div class="vault-ingest">wiki/libraries/ · changelogs/ · patterns/</div>
       </div>
     </div>
     <p class="sub" style="margin-top:20px;">
-      Copy the template. Run /setup. The INGEST skill and wiki structure<br>adapt to your domain automatically.
+      <span class="tr">Şablonu kopyala. /setup çalıştır. INGEST becerisi ve wiki yapısı<br>otomatik olarak domainine uyum sağlar.</span>
+      <span class="en">Copy the template. Run /setup. The INGEST skill and wiki structure<br>adapt to your domain automatically.</span>
     </p>
   </div>
 
-  <!-- ─── SLIDE 14: GET STARTED ────────────────────────── -->
+  <!-- SLIDE 14: GET STARTED -->
   <div class="slide" id="s14">
-    <div class="label">Get started</div>
-    <h2 style="margin-bottom:28px;">Three commands.</h2>
+    <div class="label">
+      <span class="tr">Başla</span>
+      <span class="en">Get started</span>
+    </div>
+    <h2 style="margin-bottom:28px;">
+      <span class="tr">Üç komut.</span>
+      <span class="en">Three commands.</span>
+    </h2>
     <div class="terminal" style="max-width:600px;">
       <br>
       <div><span class="prompt">$ </span><span class="cmd">git clone github.com/drader/memex my-vault</span></div>
       <div><span class="prompt">$ </span><span class="cmd">npm install && npm run setup</span></div>
       <div><span class="prompt">$ </span><span class="cmd">npm run install-daemon</span></div>
       <div class="out">&nbsp;</div>
-      <div class="hi">✓ Agents scheduled.</div>
-      <div class="hi">✓ Wiki seeded from your context.</div>
-      <div class="hi">✓ Daemon running in background.</div>
+      <div class="hi tr">✓ Ajanlar planlandı.</div>
+      <div class="hi en">✓ Agents scheduled.</div>
+      <div class="hi tr">✓ Wiki bağlamından tohumlandı.</div>
+      <div class="hi en">✓ Wiki seeded from your context.</div>
+      <div class="hi tr">✓ Daemon arka planda çalışıyor.</div>
+      <div class="hi en">✓ Daemon running in background.</div>
       <div class="out">&nbsp;</div>
-      <div class="out">You can close this terminal. The system keeps going.</div>
+      <div class="out tr">Bu terminali kapatabilirsin. Sistem çalışmaya devam eder.</div>
+      <div class="out en">You can close this terminal. The system keeps going.</div>
       <div class="out cursor">&nbsp;</div>
     </div>
     <div class="stack-row" style="margin-top:28px;">
@@ -826,16 +740,23 @@
 
 </div><!-- /deck -->
 
-<!-- PROGRESS + COUNTER + HINT -->
 <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
 <div class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides"></span></div>
-<div class="nav-hint">← → arrow keys &nbsp;·&nbsp; space</div>
+<div class="nav-hint">
+  <span class="tr">← → ok tuşları &nbsp;·&nbsp; boşluk</span>
+  <span class="en">← → arrow keys &nbsp;·&nbsp; space</span>
+</div>
 
 <script>
+  function setLang(lang) {
+    document.documentElement.className = 'lang-' + lang;
+    document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  }
+
   const slides = document.querySelectorAll('.slide');
   const total = slides.length;
   let current = 0;
-
   document.getElementById('totalSlides').textContent = total;
 
   function goTo(n) {
@@ -853,7 +774,6 @@
     if (e.key === 'End')  goTo(total - 1);
   });
 
-  // touch/swipe
   let touchX = 0;
   document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
   document.addEventListener('touchend',   e => {
